@@ -7,11 +7,18 @@
   "permissions": [],
   "host_permissions": ["<all_urls>"],
 
+"web_accessible_resources": [
+    {
+"resources": ["*.js", "lib/*.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["main.js"],
-      "run_at": "document_idle"
+      "js": ["entry.js"],
+      "run_at": "document_start"
     }
   ]
 }

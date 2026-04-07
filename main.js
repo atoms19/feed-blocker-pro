@@ -1,7 +1,10 @@
-let targetedWebsites = [
+import {removeElement,removeElements,removeAllElements} from './lib/utils.js'
+let criminals = [
   "www.youtube.com",
   "www.instagram.com",
-  "www.reddit.com"
+  "www.reddit.com",
+  "www.quora.com",
+  "www.x.com",
 ]
 
 function removeFeeds(){
@@ -11,12 +14,7 @@ let path = window.location.pathname;
 
 
 if(host =="www.quora.com"){
-   console.log("quora found")
-	let s = document.querySelector(".dom_annotate_multifeed_home")
-   let d = document.querySelector(".dom_annotate_multifeed_following") 
-
-	if(s) s.remove();
-	 if(d) d.remove();
+  removeElements(".dom_annotate_multifeed_home",".dom_annotate_multifeed_following")
 }
 if(host == "www.reddit.com" && (path == "/"||path=="/r/popular/" || path=="/news/")){
 		  let s =document.querySelector("#main-content")
@@ -29,20 +27,19 @@ if(host == "www.reddit.com" && (path == "/"||path=="/r/popular/" || path=="/news
         s.style.opacity="1"; 
 }
 if(host=="www.instagram.com" && (path.startsWith("/reels") || path.startsWith("/explore"))){
-		let s = document.querySelector(".xvbhtw8");
-      if(!s) return;
-      s.remove();
+      removeElement(".xvbhtw8")
 }
 
 if(host =="www.instagram.com" && path =="/"){
-    let s = document.querySelector("[role='main'").children[0].children[0].children[0].children[1]
+    let s = document.querySelector("[role='main'")?.children[0]?.children[0]?.children[0]?.children[1]
     if(!s) return;
     s.remove();
 }
 
 if(host=="www.youtube.com"){
-   document.querySelector("#endpoint[title='Shorts']")?.remove()  
-document.querySelectorAll('.ytGridShelfViewModelHost').forEach(e=>e.remove())
+  removeElement("#endpoint[title='Shorts']")
+  removeAllElements('.ytGridShelfViewModelHost')
+  removeElement('.ytd-watch-next-secondary-results-renderer')
 }
 
 if(host=="www.youtube.com" && path =="/"){
@@ -57,34 +54,31 @@ if(host=="www.youtube.com" && path =="/"){
  let s = document.querySelector("#contents");
    if(s) s.style.opacity ="1"
    if(s) s.style.pointerEvents ="auto"
-   let s2 = document.querySelector("#filter-chip-bar")
-   if(s2) s2.remove();
-  setTimeout(()=>{
-	 let s2 = document.querySelector("#filter-chip-bar")
-	 if(s2) s2.remove();
-document.querySelectorAll('.ytGridShelfViewModelHost').forEach(e=>e.remove())
-	},1000)
+    removeElement("#filter-chip-bar")
 }
 
 
 // https://www.youtube.com/feed/channels
 if(host=="www.youtube.com" && path.startsWith("/feed/subscriptions")){
-   window.location.pathname="/feed/channels/"
+   window.location.replace("/feed/channels/")
 }
 
 if(host == "www.youtube.com" && path.startsWith("/shorts/")){
-   window.location.pathname="/"
+   window.location.replace("/")
 }
 
 if(host == "www.x.com"){
-	 let s = document.querySelector("[aria-label='Home timeline']").children[4]
-    let d = document.querySelector("[aria-label='Timeline: Explore']")
+	 let s = document.querySelector("[aria-label='Home timeline']")?.children[4]
+    removeElement("[aria-label='Timeline: Explore']")
     if (s) s.remove()
-    if (d) d.remove()
 }
 }
 
 
+
+//only insert MutationObserver in mailicious websites 
+if(criminals.includes(window.location.host)){
+  removeFeeds();
 const observer = new MutationObserver(() => {
   removeFeeds();
 });
@@ -93,3 +87,5 @@ observer.observe(document.body, {
   childList: true,
   subtree: true
 });
+
+}
