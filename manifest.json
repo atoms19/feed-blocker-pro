@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Feed Blocker Pro",
+  "version": "1.0",
+  "description": "Removes distracting feeds from websites.",
+ 
+  "permissions": [],
+  "host_permissions": ["<all_urls>"],
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["main.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
