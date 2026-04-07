@@ -5,6 +5,7 @@ let criminals = [
   "www.reddit.com",
   "www.quora.com",
   "www.x.com",
+  "www.linkedin.com"
 ]
 
 function removeFeeds(){
@@ -12,6 +13,10 @@ let host = window.location.host;
 let path = window.location.pathname;
         console.log(host,path);
 
+if(host=="www.linkedin.com"){
+  removeElement('[data-testid="mainFeed"]') 
+
+}
 
 if(host =="www.quora.com"){
   removeElements(".dom_annotate_multifeed_home",".dom_annotate_multifeed_following")
