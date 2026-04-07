@@ -87,10 +87,11 @@ if(criminals.includes(window.location.host)){
 const observer = new MutationObserver(() => {
   removeFeeds();
 });
-
+setTimeout(()=>{
+if(document.body){
 observer.observe(document.body, {
   childList: true,
   subtree: true
 });
-
+}},400)
 }
