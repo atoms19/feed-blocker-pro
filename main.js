@@ -15,7 +15,6 @@ let path = window.location.pathname;
 
 if(host=="www.linkedin.com"){
   removeElement('[data-testid="mainFeed"]') 
-
 }
 
 if(host =="www.quora.com"){
