@@ -49,23 +49,23 @@ then you can skip to step 3 , and select the folder which you cloned the repo to
 
 for non git users follow the instructions below step by step
 
-**step 1** : download the repo
+### **step 1** : download the repo
 first you must download this repo as a zip file and extract it to a folder 
 u can download the repo by clicking the green code button on the top right of the page(assuming you are viewing this on github)
 then click the `download zip` option and save the file to your computer
 
-**step 2**: extract the zip file
+### **step 2**: extract the zip file
 after you have downloaded the zip file , right click on the file and select `extract all` to extract the contents of the zip file to a folder
 now open google chorme (or any chromium based browser (brave, edge etc)) and go to the extensions page by typing `chrome://extensions` in the address bar and pressing enter
 
-**step 3**: turn on developer mode 
+### **step 3**: turn on developer mode 
 one you are there you will see a toggle switch in the top right corner of the page 
 to turn on developer mode click on the toggle switch and it will turn blue
 
 after you have turned on developer mode you will see three buttons appear on the page
 `load unpacked` , `pack extension` and `update`
 
-**step 4**: load the extension
+### **step 4**: load the extension
 click on the `load unpacked` button and a file explorer window will open
 select the folder which you extracted the zip file to and click on the `select folder` button
 after you have selected the folder the extension will be loaded and you will see it in the list of the extensions page 
