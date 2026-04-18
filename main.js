@@ -5,7 +5,8 @@ let criminals = [
   "www.reddit.com",
   "www.quora.com",
   "www.x.com",
-  "www.linkedin.com"
+  "www.linkedin.com",
+  "m.youtube.com",
 ]
 
 function removeFeeds(){
@@ -78,11 +79,22 @@ if(host == "www.x.com"){
 }
 }
 
+function injectGrayScaler(){
+  const style = document.createElement('style');
+  style.textContent = `
+    html {
+			filter: grayscale(90%);
+		}
+	`;
+  document.head.appendChild(style);
+}
+
 
 
 //only insert MutationObserver in mailicious websites 
 if(criminals.includes(window.location.host)){
   removeFeeds();
+  injectGrayScaler();
 const observer = new MutationObserver(() => {
   removeFeeds();
 });
